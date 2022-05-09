@@ -162,7 +162,7 @@
 		</xsl:if>
 
 		<!-- content //-->
-		<xsl:for-each select="$cnt[./idp=$cmn/id or ./id=$vrs/itm]" >
+		<xsl:for-each select="$cnt[./idp=$cmn/id or ./id=$vrs/itm or ./li=$vrs/itm]" >
 			<xsl:sort select="z" data-type="number" order="{$srt}" />
 			<xsl:variable name="tag" >
 				<xsl:choose><xsl:when test="(./ca!='sldr' and position() = 1) or position() = 2" >div</xsl:when><xsl:when test="./ca!='sldr' or ./ca!='blk'" >section</xsl:when><xsl:otherwise>article</xsl:otherwise></xsl:choose>
