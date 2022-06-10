@@ -89,7 +89,7 @@
 	<head>
 		<title>
 			<xsl:if test="$mn[./id = $vrs/cmn]/li != ''" ><xsl:value-of select="$mn[./id = $vrs/cmn]/ti" /> - </xsl:if>
-			<xsl:value-of select="$me/ti" />
+			<xsl:value-of select="$me/ti" /> &#160;
 		</title>
 		<meta charset="utf-8" />
 
