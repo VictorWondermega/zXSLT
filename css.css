@@ -70,7 +70,7 @@ a:active { color: #F15A29; }
 	.btn--ol:active { color: #F15A29; }
 
 /* header */
-	.header { position: fixed; top: 0; left: 0; width: 100%; z-index: 10; font-family: Roboto, Tahoma, sans-serif; transition-duration: 0.6s; }
+	.header { position: fixed; top: 0; left: 0; width: 100%; z-index: 10; font-family: Roboto, Tahoma, sans-serif; transition-duration: 0.6s; background: rgba(255,255,255,0.4); }
 	.adm.pnl + .header { top: 32px; }
 	.sticky .adm.pnl + .header { top: 0; }
 
@@ -180,7 +180,7 @@ a:active { color: #F15A29; }
 	.slider-top__title { display: none; }
 	.slider-top .cnt { display: flex; flex-direction: column; justify-content: center; min-height: 600px; }
 	
-	.slider-top .sld { padding: 10rem 0 5rem; }
+	.slider-top .sld {  } /* padding: 10rem 0 5rem; */
 	.slider-top .sld__title { margin: 0 auto 2rem; font-size: 3.2rem; text-align: center; letter-spacing: -1px; line-height: 1.1; }
 
 	.testimonials { background: radial-gradient(93.28% 125.24% at 23.33% 50%, #FFF9F0 0%, #EBF4F8 100%); text-align: center; }

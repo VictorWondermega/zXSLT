@@ -256,7 +256,7 @@
 		
 	</xsl:element>
   </xsl:template>
-  
+
   <xsl:template match="hdr/js" mode="s" >
 	<xsl:for-each select="./*" >
 		<script src="{.}" ><xsl:text><![CDATA[]]></xsl:text></script>
