@@ -122,6 +122,8 @@
   </xsl:template>
   
   <xsl:template match="page/bdy/cnt" mode="s" >
+	<xsl:variable name="vcrd" select="//r/i[./ca='vcard']" />
+
 	<!-- header //-->
 	<header class="header" >
 		<div class="container row header__container" >
@@ -134,13 +136,16 @@
 					<li class="menu__item social header__social sm-hide" >
 						<ul class="row social__list" >
 							<li class="social__item social__item--vk" ><a href="./#" title="vkontakte" >vkontakte</a></li>
-							<xsl:comment>
-							<li class="social__item social__item--im" ><a href="./#" title="instagram" >instagram</a></li>
-							<li class="social__item social__item--fb" ><a href="./#" title="facebook" >facebook</a></li>
-							</xsl:comment>
+							<li class="social__item social__item--tg" ><a href="./#" title="telegram" >telegram</a></li>
+							<li class="social__item social__item--wa" ><a href="./#" title="whatsapp" >whatsapp</a></li>
 						</ul>
 					</li>
-					<li class="menu__item sm-hide" ><a href="./#" title="Записаться" class="btn btn--ol" >Записаться</a></li>
+					<xsl:comment> <li class="menu__item sm-hide" ><a href="./#" title="Записаться" class="btn btn--ol" >Записаться</a></li> </xsl:comment>
+
+					<xsl:if test="$vcrd/ph" >
+						<li class="menu__item sm-hide header__ph" ><a href="tel:{$vcrd/ph}"><xsl:value-of select="$vcrd/ph" /></a></li>
+					</xsl:if>
+
 					<li id="mobile_menu" class="menu__item mobile lg-hide" >&#160;</li>
 				</ul>
 			</nav>
@@ -177,38 +182,43 @@
 	<footer class="footer" >
 		<div class="container footer__container" >
 			<xsl:call-template name="lg" ><xsl:with-param name="cl" >footer</xsl:with-param></xsl:call-template>
-			
+
 			<nav class="menu footer__menu" >
 				<ul class="row menu__list" >
 					<li class="menu__item" >
-						<a href="./#" title="О нас" >О нас</a>
+						<a href="./about" title="О нас" >О нас</a>
 						<ul class="menu__list submenu__list" >
-							<li class="menu__item" ><a href="./#" title="Врачи" >Врачи</a></li>
-							<li class="menu__item" ><a href="./#" title="Консультации" >Консультации</a></li>
-							<li class="menu__item" ><a href="./#" title="Описание" >Описание</a></li>
+							<xsl:for-each select="$mn[./li != 'about' and ./li != 'contacts' and (./pl='hdr' or ./pl='ftr')]" >
+								<li class="menu__item" ><a href="./{./li}" title="{./de}" ><xsl:value-of select="./ti" /></a></li>
+							</xsl:for-each>
 						</ul>
 					</li>
-					<li class="menu__item" ><a href="./#" title="Консультации" >Консультации</a>
-						<ul class="menu__list submenu__list" >
-							<li class="menu__item" ><a href="./#" title="Запись на приём" >Запись на приём</a></li>
-							<li class="menu__item" ><a href="./#" title="Задать вопрос" >Задать вопрос</a></li>
-							<li class="menu__item" ><a href="./#" title="Независимая экспертиза" >Независимая экспертиза</a></li>
-						</ul>
+					<li class="menu__item" >
+						<xsl:if test="$vcrd/adr/*[string-length(.) &gt; 1]" >
+							<a href="./contacts" title="Контакты" >Контакты</a>
+							<ul class="menu__list submenu__list adr" >
+								<xsl:if test="$vcrd/adr/plz != ''" ><li class="postal-code" ><xsl:value-of select="$vcrd/adr/plz" /></li></xsl:if>
+								<xsl:if test="$vcrd/adr/cntr != ''" ><li class="country-name" ><xsl:value-of select="$vcrd/adr/cntr" /></li></xsl:if>
+								<xsl:if test="$vcrd/adr/twn != ''" ><li class="locality" ><xsl:value-of select="$vcrd/adr/twn" /></li></xsl:if>
+								<xsl:if test="$vcrd/adr/str != ''" ><li class="street-address" ><xsl:value-of select="$vcrd/adr/str" /></li></xsl:if>
+							</ul>
+						</xsl:if><![CDATA[]]>
 					</li>
-					<li class="menu__item" ><a href="./#" title="Информация" >Информация</a>
-						<ul class="menu__list submenu__list" >
-							<li class="menu__item" ><a href="./#" title="Условия оказания" >Условия оказания</a></li>
-							<li class="menu__item" ><a href="./#" title="Приватность" >Приватность</a></li>
-							<li class="menu__item" ><a href="./#" title="Cookie" >Cookie</a></li>
-						</ul>
+					<li class="menu__item" >
+						<xsl:if test="$vcrd/ph" >
+							<xsl:if test="$vcrd/adr/*[string-length(.) &gt; 1]" >&#160;<br/></xsl:if>
+							<xsl:if test="not($vcrd/adr/*[string-length(.) &gt; 1])" ><a href="./contacts" title="Контакты" >Контакты</a></xsl:if>
+							<ul class="menu__list submenu__list" >
+								<li class="menu__item" ><a href="tel:{$vcrd/ph}" ><xsl:value-of select="$vcrd/ph" /></a></li>
+								<li class="menu__item" ><a href="email:{$vcrd/em}" ><xsl:value-of select="$vcrd/em" /></a></li>
+							</ul>
+						</xsl:if><![CDATA[]]>
 					</li>
 					<li class="menu__item social" >Поделиться
 						<ul class="menu__list submenu__list social__list" >
 							<li class="menu__item social__item social__item--vk" ><a href="./#" title="vkontakte" >vkontakte</a></li>
-							<xsl:comment>
-							<li class="menu__item social__item social__item--im" ><a href="./#" title="instagram" >instagram</a></li>
-							<li class="menu__item social__item social__item--fb" ><a href="./#" title="facebook" >facebook</a></li>
-							</xsl:comment>
+							<li class="social__item social__item--tg" ><a href="./#" title="telegram" >telegram</a></li>
+							<li class="social__item social__item--wa" ><a href="./#" title="whatsapp" >whatsapp</a></li>
 						</ul>
 					</li>
 				</ul>
