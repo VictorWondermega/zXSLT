@@ -95,7 +95,7 @@ class zXSLT {
 		$vis = array(
 			'ca'=>'vis', 
 			'page'=>array(
-				'hdr'=>array('css'=>array('/za/zXSLT/css.css'),'js'=>array('/za/zZ/zZ.js','/usr/xslt/za6.js'),'z'=>10),
+				'hdr'=>array('css'=>array('/za/zXSLT/css.css'),'js'=>array('/za/zZ/zZ.js','/usr/za6.js'),'z'=>10),
 				'bdy'=>array('cnt'=>'','z'=>20)
 			),
 			'tmplts'=>array(
