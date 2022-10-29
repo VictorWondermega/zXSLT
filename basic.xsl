@@ -269,7 +269,7 @@
 
   <xsl:template match="hdr/js" mode="s" >
 	<xsl:for-each select="./*" >
-		<script src="{.}" ><xsl:text><![CDATA[]]></xsl:text></script>
+		<script src="{.}" defer="defer" ><xsl:text><![CDATA[]]></xsl:text></script>
 	</xsl:for-each>
   </xsl:template>
   
