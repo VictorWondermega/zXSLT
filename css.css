@@ -150,6 +150,8 @@ a:active { color: #F15A29; }
 
 /* defaults */
 
+	.adm.red + .blk__content .adm.red { top: 36px; }
+
 	/* slider block */
 	.sld__content { }
 	.sld__pre { text-transform: uppercase; color: #6E92B0; margin: 0 auto; }
@@ -179,6 +181,13 @@ a:active { color: #F15A29; }
 	.img__image { height: 14.185vw; min-height: 200px; background-size: cover; margin-bottom: 0.4rem; }
 	.img__title { text-align: center; color: #0B4073; margin: 0; }
 	.img__txt { font-size: 1rem; text-align: center; margin-bottom: 1rem; }
+
+	/* file */
+	.fls { }
+	.fls__content { display: block; background-color: transparent; border-radius: 3px; padding: 6px; }
+	.fls__content:active, .fls__content:hover, .fls__content:focus { background-color: #fff; }
+	.fls__title { display: block; font-size: 1.2rem; }
+	.fls__txt { display: block; font-size: 0.8rem; }
 
 /* main */
 	.content { color: #2677A1; background-color: #fcfeff; }
