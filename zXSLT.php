@@ -90,12 +90,20 @@ class zXSLT {
 		$this->n = (($n)?$n:'zXSLT');
 
 		$this->cd = realpath( __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR );
+		$this->rd = realpath( $this->cd.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR );
 		$this->dd = DIRECTORY_SEPARATOR;
 
 		$vis = array(
 			'ca'=>'vis', 
 			'page'=>array(
-				'hdr'=>array('css'=>array('/za/zXSLT/css.css'),'js'=>array('/za/zZ/zZ.js','/usr/za6.js'),'z'=>10),
+				'hdr'=>array(
+					'css'=>array('/za/zXSLT/css.css'),
+					'js'=>array(
+							'/za/zZ/zZ.js?'.filemtime($this->cd.$this->dd.'zZ'.$this->dd.'zZ.js'),
+							'/usr/xslt/za6.js?'.filemtime($this->rd.$this->dd.'usr'.$this->dd.'xslt'.$this->dd.'za6.js')
+						),
+					'z'=>10
+				),
 				'bdy'=>array('cnt'=>'','z'=>20)
 			),
 			'tmplts'=>array(
