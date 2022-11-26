@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xsl:stylesheet version="1.0" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-  <xsl:output method="xml" media-type="text/html" encoding="utf-8" omit-xml-declaration="yes" version="1.0" indent="yes" cdata-section-elements="description" />
+  <xsl:output method="xml" media-type="text/html" encoding="utf-8" omit-xml-declaration="yes" version="1.0" indent="yes" cdata-section-elements="description script" />
 
   <xsl:strip-space elements="*" />
   <xsl:preserve-space elements="aero sys url lng db" />
