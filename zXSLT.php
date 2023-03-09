@@ -97,11 +97,8 @@ class zXSLT {
 			'ca'=>'vis', 
 			'page'=>array(
 				'hdr'=>array(
-					'css'=>array('/za/zXSLT/css.css'),
-					'js'=>array(
-							'/za/zZ/zZ.js?'.filemtime($this->cd.$this->dd.'zZ'.$this->dd.'zZ.js'),
-							'/usr/xslt/za6.js?'.filemtime($this->rd.$this->dd.'usr'.$this->dd.'xslt'.$this->dd.'za6.js')
-						),
+					'css'=>array(),
+					'js'=>array(),
 					'z'=>10
 				),
 				'bdy'=>array('cnt'=>'','z'=>20)
@@ -110,6 +107,19 @@ class zXSLT {
 				'./zXSLT/basic.xsl'
 			),
 		);
+
+		if(is_file($this->cd.$this->dd.'zXSLT'.$this->dd.'css.css')) { 
+			$vis['page']['hdr']['css'][] = '/za/zXSLT/css.css'; 
+		} else {}
+
+		if(is_file($this->cd.$this->dd.'zZ'.$this->dd.'zZ.js')) { 
+			$vis['page']['hdr']['js'][] = '/za/zZ/zZ.js?'.filemtime($this->cd.$this->dd.'zZ'.$this->dd.'zZ.js'); 
+		} else {}
+
+		if(is_file($this->rd.$this->dd.'usr'.$this->dd.'xslt'.$this->dd.'za6.js')) { 
+			$vis['page']['hdr']['js'][] = '/usr/xslt/za6.js?'.filemtime($this->rd.$this->dd.'usr'.$this->dd.'xslt'.$this->dd.'za6.js'); 
+		} else {}
+
 		$this->za->mm(false, $vis);
 		$this->za->ee($this->n,array($this,'load'));
 		
