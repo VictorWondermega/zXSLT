@@ -176,6 +176,7 @@
 				<xsl:apply-templates select="." ><xsl:with-param name="h" ><xsl:if test="$tag='div'" >1</xsl:if><xsl:if test="$tag!='div'" >2</xsl:if></xsl:with-param></xsl:apply-templates>
 			</div></xsl:element>
 		</xsl:for-each>
+		<![CDATA[ ]]>
 	</main>
 
 	<!-- footer //-->
