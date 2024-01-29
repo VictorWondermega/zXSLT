@@ -16,8 +16,8 @@
   <xsl:variable name="zmsg" select="/r/i[./ca='zmsg']" />
 
   <xsl:variable name="base" ><xsl:value-of select="concat($vrs/https,'://',$vrs/host)" /></xsl:variable>
-  <xsl:variable name="link" select="concat('/',$vrs/lng,'/')" /> <!-- $vrs/aero,'/', -->
-  <xsl:variable name="notimestamp" ><xsl:if test="contains($vrs/fullurl,'/timestamp')" ><xsl:value-of select="substring-before($vrs/fullurl,'/timestamp')" /></xsl:if><xsl:if test="not(contains($vrs/fullurl,'/timestamp'))" ><xsl:value-of select="$vrs/fullurl" /></xsl:if></xsl:variable><!-- <xsl:value-of select="$vrs/base" /> $vrs/aero,'/', -->
+  <xsl:variable name="link" ><xsl:if test="$vrs/lng and string-length($vrs/lng) &gt; 0" ><xsl:value-of select="concat($vrs/lng,'/')" /></xsl:if></xsl:variable>
+  <xsl:variable name="notimestamp" ><xsl:if test="contains($vrs/fullurl,'/timestamp')" ><xsl:value-of select="substring-before($vrs/fullurl,'/timestamp')" /></xsl:if><xsl:if test="not(contains($vrs/fullurl,'/timestamp'))" ><xsl:value-of select="$vrs/fullurl" /></xsl:if></xsl:variable>
 
   <xsl:variable name="page" ><xsl:choose><xsl:when test="$vrs/page" ><xsl:value-of select="$vrs/page" /></xsl:when><xsl:otherwise>1</xsl:otherwise></xsl:choose></xsl:variable>
   

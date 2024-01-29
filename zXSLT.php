@@ -17,7 +17,7 @@ class zXSLT {
 		} else {
 			$xxml = $xml;
 		}
-		
+
 		$transform = new \XSLTProcessor;
 		$transform->importStyleSheet($xsl);
 	return $transform->transformToXML($xxml);
