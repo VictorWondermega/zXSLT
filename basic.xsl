@@ -73,7 +73,7 @@
 <xsl:template match="i/page" mode="s" >
 <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;
 </xsl:text>
-<html xml:lang="{$vrs/lng}" lang="{$vrs/lng}" prefix="og: http://ogp.me/ns# twitter: http://api.twitter.com" >
+<html lang="{$vrs/lng}" prefix="og: http://ogp.me/ns# twitter: http://api.twitter.com" >
 	<xsl:if test="$vrs/timestamp and $vrs/itm" >
 		<xsl:apply-templates select="/r/i[./id=$vrs/itm]" />
 	</xsl:if><xsl:if test="not($vrs/timestamp) or not($vrs/itm)" >
