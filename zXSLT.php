@@ -7,6 +7,12 @@ namespace za\zXSLT;
 
 class zXSLT {
 	/* Zagata.XSLT */
+	private $za = null;
+	public $n = '';
+		
+	public $cd = '';
+	public $rd = '';
+	public $dd = '/';
 
 	public $xsl = false;
 
