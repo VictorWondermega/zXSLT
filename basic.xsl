@@ -102,7 +102,7 @@
 		<meta name="HandheldFriendly" content="true" />
 		<meta name="format-detection" content="telephone=no"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no, minimal-ui" />
+		<meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no, minimal-ui" />
 
 		<meta name="generator" content="zagata.rock" />
 		<base href="{$base}" />
@@ -176,7 +176,6 @@
 				<xsl:apply-templates select="." ><xsl:with-param name="h" ><xsl:if test="$tag='div'" >1</xsl:if><xsl:if test="$tag!='div'" >2</xsl:if></xsl:with-param></xsl:apply-templates>
 			</div></xsl:element>
 		</xsl:for-each>
-		<![CDATA[ ]]>
 	</main>
 
 	<!-- footer //-->
