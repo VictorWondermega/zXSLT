@@ -124,6 +124,52 @@
   <xsl:template match="page/bdy/cnt" mode="s" >
 	<xsl:variable name="vcrd" select="//r/i[./ca='vcard']" />
 
+	<!-- main //-->
+	<main class="content" >
+		<xsl:variable name="srt" ><xsl:if test="$cmn/srt='desc'" >descending</xsl:if><xsl:if test="not($cmn/srt) or $cmn/srt!='desc'" >ascending</xsl:if></xsl:variable>
+
+		<!-- 404 //-->
+		<xsl:if test="$vrs/e404" >
+			<section class="e404" >
+				<div class="container" >
+					<h1>404</h1>
+					<p><a href="/" >Главная</a></p>
+				</div>
+			</section>
+		</xsl:if>
+
+		<!-- content //-->
+		<xsl:for-each select="$cnt[./idp=$cmn/id or ./id=$vrs/itm or ./li=$vrs/itm]" >
+			<xsl:sort select="z" data-type="number" order="{$srt}" />
+			<xsl:variable name="tag" >
+				<xsl:choose><xsl:when test="(./ca!='sldr' and position() = 1) or position() = 2" >div</xsl:when><xsl:when test="./ca!='sldr' or ./ca!='blk'" >section</xsl:when><xsl:otherwise>article</xsl:otherwise></xsl:choose>
+			</xsl:variable>
+			<xsl:element name="{$tag}" ><xsl:attribute name="class" ><xsl:value-of select="normalize-space(concat(./ca,' ',./li))" /> <xsl:if test="./src" > <xsl:value-of select="concat(' ',./ca,'--img ',./li,'--img')" /></xsl:if></xsl:attribute><div class="container" >
+				<xsl:apply-templates select="." ><xsl:with-param name="h" ><xsl:if test="$tag='div'" >1</xsl:if><xsl:if test="$tag!='div'" >2</xsl:if></xsl:with-param></xsl:apply-templates>
+			</div></xsl:element>
+		</xsl:for-each>
+		<![CDATA[ ]]>
+	</main>
+	
+	<!-- messages $zmsg //-->
+	<aside id="zmsg" class="zmsg"><ul>
+		<xsl:if test="$zmsg">
+		<xsl:for-each select="$zmsg">
+		<li class="{./cat}" ondblclick=" this.parentNode.removeChild(this);"><b><xsl:value-of select="./m"/></b> <xsl:value-of select="./de"/></li>
+		</xsl:for-each>
+		</xsl:if>
+		<![CDATA[ ]]>
+	</ul></aside>	
+	
+	<!-- to top //-->
+	<div class="cl totop"><div class="container">
+			<a href="#" id="totop"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14px" height="8px" viewBox="0 0 14 8"><path fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13,7L7,1L1,7"/></svg></a>
+	</div></div>
+  </xsl:template>
+
+  <xsl:template match="page/bdy/hdr" mode="s" >
+	<xsl:variable name="vcrd" select="//r/i[./ca='vcard']" />
+
 	<!-- header //-->
 	<header class="header" >
 		<div class="container row header__container" >
@@ -151,33 +197,10 @@
 			</nav>
 		</div>
 	</header>
+  </xsl:template>
 
-	<!-- main //-->
-	<main class="content" >
-		<xsl:variable name="srt" ><xsl:if test="$cmn/srt='desc'" >descending</xsl:if><xsl:if test="not($cmn/srt) or $cmn/srt!='desc'" >ascending</xsl:if></xsl:variable>
-
-		<!-- 404 //-->
-		<xsl:if test="$vrs/e404" >
-			<section class="e404" >
-				<div class="container" >
-					<h1>404</h1>
-					<p><a href="/" >Главная</a></p>
-				</div>
-			</section>
-		</xsl:if>
-
-		<!-- content //-->
-		<xsl:for-each select="$cnt[./idp=$cmn/id or ./id=$vrs/itm or ./li=$vrs/itm]" >
-			<xsl:sort select="z" data-type="number" order="{$srt}" />
-			<xsl:variable name="tag" >
-				<xsl:choose><xsl:when test="(./ca!='sldr' and position() = 1) or position() = 2" >div</xsl:when><xsl:when test="./ca!='sldr' or ./ca!='blk'" >section</xsl:when><xsl:otherwise>article</xsl:otherwise></xsl:choose>
-			</xsl:variable>
-			<xsl:element name="{$tag}" ><xsl:attribute name="class" ><xsl:value-of select="normalize-space(concat(./ca,' ',./li))" /> <xsl:if test="./src" > <xsl:value-of select="concat(' ',./ca,'--img ',./li,'--img')" /></xsl:if></xsl:attribute><div class="container" >
-				<xsl:apply-templates select="." ><xsl:with-param name="h" ><xsl:if test="$tag='div'" >1</xsl:if><xsl:if test="$tag!='div'" >2</xsl:if></xsl:with-param></xsl:apply-templates>
-			</div></xsl:element>
-		</xsl:for-each>
-		<![CDATA[ ]]>
-	</main>
+  <xsl:template match="page/bdy/ftr" mode="s" >
+	<xsl:variable name="vcrd" select="//r/i[./ca='vcard']" />
 
 	<!-- footer //-->
 	<footer class="footer" >
@@ -232,22 +255,6 @@
 			
 		</div>
 	</footer>
-	
-	<!-- messages $zmsg //-->
-	<aside id="zmsg" class="zmsg"><ul>
-		<xsl:if test="$zmsg">
-		<xsl:for-each select="$zmsg">
-		<li class="{./cat}" ondblclick=" this.parentNode.removeChild(this);"><b><xsl:value-of select="./m"/></b> <xsl:value-of select="./de"/></li>
-		</xsl:for-each>
-		</xsl:if>
-		<![CDATA[ ]]>
-	</ul></aside>	
-	
-	<!-- to top //-->
-	<div class="cl totop"><div class="container">
-			<a href="#" id="totop"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14px" height="8px" viewBox="0 0 14 8"><path fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13,7L7,1L1,7"/></svg></a>
-	</div></div>
-
   </xsl:template>
 
 <!-- ///////////////////////////////////////////////////// //-->

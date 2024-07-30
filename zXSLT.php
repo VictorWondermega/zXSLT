@@ -15,6 +15,7 @@ class zXSLT {
 	public $dd = '/';
 
 	public $xsl = false;
+	// public $xpt = false;
 
 	public function show($xml,$xsl=false) {
 		$xsl = ($xsl)?$xsl:$this->xsl;
@@ -68,6 +69,16 @@ class zXSLT {
 				foreach($nodes as $z) {
 					foreach($tmp->getElementsByTagNameNS('http://www.w3.org/1999/XSL/Transform',$z) as $y) {
 						if($y->parentNode->tagName=='xsl:stylesheet') {
+							// remove previous elements with similar names
+							// can add there priority parsing, like mode="s" but flexible
+							if($z == 'template' && $y->getAttribute('name')) {
+								foreach($this->xsl->getElementsByTagNameNS('http://www.w3.org/1999/XSL/Transform',$z) as $yy) {
+									if($yy->getAttribute('name') == $y->getAttribute('name')) {
+										$yy->parentNode->removeChild($yy);
+									} else {}
+								}
+							} 
+
 							$y = $this->xsl->importNode($y,true);
 							$this->xsl->documentElement->appendChild($y);
 						} else {}
@@ -80,6 +91,7 @@ class zXSLT {
 		} else {
 			$this->xsl = new \DOMDocument;
 			$this->xsl->load($fle);
+			// $this->xpt = \DOMXPath( $this->xsl );
 			// $this->za->msg('ntf','vis', $flenm.' loaded');
 		}
 	}
@@ -107,7 +119,7 @@ class zXSLT {
 					'js'=>array(),
 					'z'=>10
 				),
-				'bdy'=>array('cnt'=>'','z'=>20)
+				'bdy'=>array('hdr'=>'', 'cnt'=>'', 'ftr'=>'', 'z'=>20)
 			),
 			'tmplts'=>array(
 				'./zXSLT/basic.xsl'
