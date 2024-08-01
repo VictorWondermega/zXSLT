@@ -240,7 +240,7 @@
 					</li>
 					<li class="menu__item social" >Поделиться
 						<ul class="menu__list submenu__list social__list" >
-							<li class="menu__item social__item social__item--vk" ><a href="./#" title="vkontakte" >vkontakte</a></li>
+							<li class="social__item social__item--vk" ><a href="./#" title="vkontakte" >vkontakte</a></li>
 							<li class="social__item social__item--tg" ><a href="./#" title="telegram" >telegram</a></li>
 							<li class="social__item social__item--wa" ><a href="./#" title="whatsapp" >whatsapp</a></li>
 						</ul>
