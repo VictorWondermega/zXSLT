@@ -291,6 +291,7 @@
 
   <xsl:template match="i" mode="s" >
   <xsl:param name="h" select="string(2)" />
+	<xsl:if test="./li" ><a id="{./li}" name="{./li}" class="cl" ><![CDATA[]]></a></xsl:if>
 	<!-- if image //-->
 	<xsl:if test="./src" ><div class="{concat(./ca,'__image ',./li,'__image')}" style=" background-image: url({./src}); " >&#160;</div></xsl:if>
 	
@@ -324,7 +325,7 @@
 	
 	<xsl:variable name="dot" select="string('.')" />
 	<xsl:variable name="ext" select="substring-after(./src,$dot)" />
-	<a href="{./src}" class="{concat(./ca,'__content ',./li,'__content ', ./ext)}" target="_blank" >
+	<a id="{./li}" name="{./li}" href="{./src}" class="{concat(./ca,'__content ',./li,'__content ', ./ext)}" target="_blank" >
 		<xsl:if test="./ti and string-length(./ti)&gt;0" >
 			<span class="{concat(./ca,'__title ',./li,'__title')}"><xsl:value-of select="./ti" /></span>
 		</xsl:if>
